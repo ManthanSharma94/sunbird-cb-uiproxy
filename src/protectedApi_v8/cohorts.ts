@@ -3,6 +3,7 @@ import { Router } from 'express'
 import { axiosRequestConfig } from '../configs/request.config'
 import { CONSTANTS } from '../utils/env'
 import { logError } from '../utils/logger'
+import { logInfo } from './logger'
 import { ERROR } from '../utils/message'
 import { extractAuthorizationFromRequest, extractUserIdFromRequest, extractUserToken } from '../utils/requestExtract'
 
@@ -242,6 +243,7 @@ cohortsApi.get('/course/batch/cert/download/:certId', async (req, res) => {
 
 cohortsApi.get('/course/getUsersForBatch/:batchId', async (req, res) => {
   try {
+  logInfo('course/getUsersForBatch/:batchId is calling')
     const batchId = req.params.batchId
     const reqBody = {
       request: {
@@ -272,6 +274,7 @@ cohortsApi.get('/course/getUsersForBatch/:batchId', async (req, res) => {
         method: 'POST',
         url: API_END_POINTS.kongSearchUser,
       })
+      logInfo('user list is calling')
       if (searchresponse.data.result.response.count > 0) {
         for (const profileObj of searchresponse.data.result.response.content) {
           const user: ICohortsUser = getUsers(profileObj)
