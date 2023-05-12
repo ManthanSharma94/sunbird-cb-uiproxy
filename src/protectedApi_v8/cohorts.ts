@@ -3,7 +3,7 @@ import { Router } from 'express'
 import { axiosRequestConfig } from '../configs/request.config'
 import { CONSTANTS } from '../utils/env'
 import { logError } from '../utils/logger'
-import { logInfo } from './logger'
+import { logInfo } from '../utils/logger'
 import { ERROR } from '../utils/message'
 import { extractAuthorizationFromRequest, extractUserIdFromRequest, extractUserToken } from '../utils/requestExtract'
 
